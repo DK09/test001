@@ -1134,7 +1134,7 @@ def group_msg(ctx: GroupMsg):
 @deco.in_content(pattern_pa)
 @deco.only_this_msg_type('TextMsg')
 def group_msg(ctx: GroupMsg):
-    if ctx.Content in "yls爬":
+    if ctx.Content in list_pa:
         if ctx.FromUserId in usr_list_pa:
             sendMsg.send_text(ctx, '不爬，' + ctx.FromNickName + '爪巴', False)
         else:
