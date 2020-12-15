@@ -1108,6 +1108,7 @@ def friend_setu(ctx: FriendMsg):
 
 # 发送爪巴, 吟诗
 pattern_pa = '(.*?)[(爪巴)爬](.*?)'
+list_pa = ["yls爬", "yls爪巴", "伊莉丝爬", "伊莉丝爪巴"]
 pattern_pa_2 = '(.*?)[(伊莉丝)(yls)][(爪巴)爬](.*?)'
 pattern_gou = '(.*?)吟诗(.*?)'
 url_weiqu = 'http://gchat.qpic.cn/gchatpic_new/2270816244/561521251-2534335053-2D6802FC06B12061D7547D476E660C68/0' \
@@ -1130,13 +1131,14 @@ def group_msg(ctx: GroupMsg):
 
 @bot.on_group_msg
 @deco.not_botself
-@deco.in_content(pattern_pa_2)
+@deco.in_content(pattern_pa)
 @deco.only_this_msg_type('TextMsg')
 def group_msg(ctx: GroupMsg):
-    if ctx.FromUserId in usr_list_pa:
-        sendMsg.send_text(ctx, ctx.FromNickName + '爪巴', True)
-    else:
-        sendMsg.send_pic(ctx, '', url_weiqu)
+    if ctx.Content in "yls爬":
+        if ctx.FromUserId in usr_list_pa:
+            sendMsg.send_text(ctx, '不爬，' + ctx.FromNickName + '爪巴', False)
+        else:
+            sendMsg.send_pic(ctx, '', url_weiqu)
 
 
 @bot.on_group_msg
@@ -1147,7 +1149,7 @@ def group_msg(ctx: GroupMsg):
     dic = json.loads(ctx.Content)
     if config['botQQ'] in dic['UserID']:
         if ctx.FromUserId in usr_list_pa:
-            sendMsg.send_text(ctx, ctx.FromNickName + '爪巴', True)
+            sendMsg.send_text(ctx, '不爬，' + ctx.FromNickName + '爪巴', False)
         else:
             sendMsg.send_pic(ctx, '', url_weiqu)
 
