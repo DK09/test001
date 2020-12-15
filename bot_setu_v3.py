@@ -242,6 +242,8 @@ class Setu:
             return False
 
     def api_0(self):
+        return False
+        #TODO 修复api
         url = 'http://api.yuban10703.xyz:2333/setu_v4'
         params = {'level': self.setu_level,
                   'num': self.num,
@@ -1338,7 +1340,7 @@ if __name__ == '__main__':
         # 获取现在时间
         now_time = datetime.now()
         # 获取明天7点时间
-        next_time = datetime.strptime("2020-11-22 07:00:00", "%Y-%m-%d %H:%M:%S")
+        next_time = datetime.strptime("2020-12-16 07:30:00", "%Y-%m-%d %H:%M:%S")
         # 获取距离明天7点时间，单位为秒
         timer_start_time = (next_time - now_time).total_seconds()
         # 定时器,参数为(多少时间后执行，单位为秒，执行的方法)
